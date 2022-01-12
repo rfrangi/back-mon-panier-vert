@@ -1,0 +1,13 @@
+package rfi.monpaniervert.enums;
+
+public enum ETypeCompagnie {
+	BOULANGERIE,
+	PATISERIE,
+	BOUCHERIE,
+	PRIPOISSONNERIEMEUR,
+	PRIMEUR,
+	CHARCUTERIE,
+	CREMERIE,
+	EPICERIE,
+	AUTRE
+}
