@@ -16,7 +16,7 @@ public interface UserService {
 	
 	UserDTO put(Long id, UserDTO user) throws NotFoundException;
 	
-	UserDTO putEmail(Long id,String email, User user) throws NotFoundException;
+	UserDTO putEmail(Long id,String email) throws NotFoundException;
 	
 	UserDTO updatePassword(Long id, PasswordDTO passwordDTO) throws NotFoundException;
 

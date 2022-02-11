@@ -13,7 +13,7 @@ import rfi.monpaniervert.models.Email;
 public interface EmailRepository extends JpaRepository<Email, Long> {
 
 	@Query("SELECT DISTINCT e "
-			+ "FROM Email e WHERE (?1 is NULL OR (e.dest LIKE ?1))")
+			+ "FROM Email e WHERE (?1 is NULL OR (lower(e.dest) LIKE lower(concat('%', ?1,'%'))))")
 	Page<Email> find(String searchTerm, Pageable pagination);
 
 }

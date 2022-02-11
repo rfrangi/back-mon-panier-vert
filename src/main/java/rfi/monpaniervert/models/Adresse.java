@@ -58,7 +58,7 @@ public class Adresse {
 	}
 
 	public void setVille(String ville) {
-		this.ville = ville;
+		this.ville = ville.toUpperCase();
 	}
 
 	public String getCodePostal() {
@@ -74,7 +74,7 @@ public class Adresse {
 	}
 
 	public void setPays(String pays) {
-		this.pays = pays;
+		this.pays = pays.toUpperCase();
 	}
 
 	public String getDescription() {

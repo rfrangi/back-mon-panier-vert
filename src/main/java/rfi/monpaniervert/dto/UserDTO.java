@@ -18,7 +18,7 @@ public class UserDTO {
 	private EStatusUser status;
 	private Date creationDate;
 	private Date modificationDate;
-	private Boolean revecoirOffre;
+	private Boolean recevoirOffre;
 	private Set<String> roles;
 	private AdresseDTO Adresse;
 	
@@ -126,18 +126,7 @@ public class UserDTO {
 	public void setCivilite(ECivilite civilite) {
 		this.civilite = civilite;
 	}
-	/**
-	 * @return the revecoirOffre
-	 */
-	public Boolean isRevecoirOffre() {
-		return revecoirOffre;
-	}
-	/**
-	 * @param revecoirOffre the revecoirOffre to set
-	 */
-	public void setRevecoirOffre(Boolean revecoirOffre) {
-		this.revecoirOffre = revecoirOffre;
-	}
+	
 	/**
 	 * @return the adresse
 	 */
@@ -193,20 +182,19 @@ public class UserDTO {
 	public void setModificationDate(Date modificationDate) {
 		this.modificationDate = modificationDate;
 	}
-
-	/**
-	 * @return the revecoirOffre
-	 */
-	public Boolean getRevecoirOffre() {
-		return revecoirOffre;
+	
+	public Boolean getRecevoirOffre() {
+		return recevoirOffre;
 	}
 
-	
-	
+	public void setRecevoirOffre(Boolean recevoirOffre) {
+		this.recevoirOffre = recevoirOffre;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(Adresse, civilite, creationDate, email, firstname, id, lastname, modificationDate, password,
-				revecoirOffre, roles, status);
+				recevoirOffre, roles, status);
 	}
 
 	@Override
@@ -222,7 +210,7 @@ public class UserDTO {
 				&& Objects.equals(creationDate, other.creationDate) && Objects.equals(email, other.email)
 				&& Objects.equals(firstname, other.firstname) && Objects.equals(id, other.id)
 				&& Objects.equals(lastname, other.lastname) && Objects.equals(modificationDate, other.modificationDate)
-				&& Objects.equals(password, other.password) && Objects.equals(revecoirOffre, other.revecoirOffre)
+				&& Objects.equals(password, other.password) && Objects.equals(recevoirOffre, other.recevoirOffre)
 				&& Objects.equals(roles, other.roles) && status == other.status;
 	}
 }

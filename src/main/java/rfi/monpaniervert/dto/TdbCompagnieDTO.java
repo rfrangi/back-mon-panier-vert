@@ -1,9 +1,22 @@
 package rfi.monpaniervert.dto;
 
+import java.util.List;
+
+import rfi.monpaniervert.enums.EStatusCompagnie;
+
 public class TdbCompagnieDTO {
 
 	private String id;
 	private String searchTerm;
+	private List<EStatusCompagnie> status;
+	
+	public List<EStatusCompagnie> getStatus() {
+		return status;
+	}
+	
+	public void setStatus(List<EStatusCompagnie> status) {
+		this.status = status;
+	}
 	
 	/**
 	 * @return the id

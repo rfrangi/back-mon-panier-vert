@@ -12,7 +12,7 @@ import org.mapstruct.factory.Mappers;
 import rfi.monpaniervert.dto.UserDTO;
 import rfi.monpaniervert.models.User;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper extends EntityDtoMapper<User, UserDTO> {
 
 	public UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);

@@ -6,7 +6,7 @@ import org.mapstruct.factory.Mappers;
 import rfi.monpaniervert.dto.CompagnieDTO;
 import rfi.monpaniervert.models.Compagnie;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CompagnieMapper extends EntityDtoMapper<Compagnie, CompagnieDTO> {
 
 	public CompagnieMapper INSTANCE = Mappers.getMapper(CompagnieMapper.class);

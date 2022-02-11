@@ -28,6 +28,29 @@ public class CompagnieDTO {
 		this.name = name;
 	}	
 	
+	public CompagnieDTO(Long id, String name, EStatusCompagnie status, Date creationDate, Date modificationDate, Long idAdresse, String ville, String codePostal, String pays) {
+		this.id = id;
+		this.status = status;
+		this.name = name;
+		this.creationDate = creationDate;
+		this.modificationDate = modificationDate;
+		this.adresse = new AdresseDTO();
+		this.adresse.setVille(ville);		
+		this.adresse.setIdAdresse(idAdresse);
+		this.adresse.setPays(pays);
+		this.adresse.setCodePostal(codePostal);
+
+	}
+	
+	public CompagnieDTO(Long id, String name, EStatusCompagnie status, Date creationDate, Date modificationDate, AdresseDTO adresse) {
+		this.id = id;
+		this.status = status;
+		this.name = name;
+		this.creationDate = creationDate;
+		this.modificationDate = modificationDate;
+		this.adresse = adresse;
+	}
+	
 	public CompagnieDTO(Long id, EStatusCompagnie status, String name, Long siret, Long telephone, String email,
 			Date creationDate, String img) {
 		super();

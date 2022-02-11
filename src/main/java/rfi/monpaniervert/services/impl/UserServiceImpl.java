@@ -32,13 +32,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO putEmail(Long id, String email, User user) throws NotFoundException {
-		
+	public UserDTO putEmail(Long id, String email) throws NotFoundException {
 		if( this.userManager.existsByEmail(email)) {
 			throw new LoginExistingException("Cette adresse mail est déjà utilisé");
 		}
+		final User user = this.userManager.getById(id);
 		user.setEmail(email);
-		user.setId(id);
 		return UserMapper.INSTANCE.toDto(this.userManager.put(id, user));
 	}
 	

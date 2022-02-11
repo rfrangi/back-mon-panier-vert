@@ -34,18 +34,18 @@ public class AdminCompagnieController {
 
 	@RequestMapping(value = "/paginated", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Page<Compagnie> find(@RequestBody TdbCompagnieDTO tdbCompagnieDTO, Pageable pagination) {
+	public Page<CompagnieDTO> find(@RequestBody TdbCompagnieDTO tdbCompagnieDTO, Pageable pagination) {
 		return this.compagnieService.find(tdbCompagnieDTO, pagination);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	CompagnieDTO create(@RequestParam("compagnie") String compagnie,  @RequestParam(value = "files", required= false ) MultipartFile files) throws JsonProcessingException {
+	CompagnieDTO create(@RequestParam("compagnie") String compagnie, @RequestParam(value = "files", required= false ) MultipartFile files) throws JsonProcessingException {
     	final Compagnie compagnieObj = this.mapper.readValue(compagnie, Compagnie.class);
     	return this.compagnieService.create(compagnieObj, files);
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	public CompagnieDTO put(@PathVariable(value = "id") Long id, @RequestParam("compagnie") String compagnie,  @RequestParam(value = "files", required= false ) MultipartFile files) throws JsonProcessingException {
     	final Compagnie compagnieObj = this.mapper.readValue(compagnie, Compagnie.class);

@@ -1,6 +1,7 @@
 package rfi.monpaniervert.mappers;
 
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -51,17 +52,7 @@ public interface EntityDtoMapper<E, D> {
      * @return the list of DTO generated
      */
     default List<D> toDtoList(List<E> entityList){
-        return entityList.stream().filter(Objects::nonNull).map(this::toDto).collect(Collectors.toList());
-    }
+        return Optional.ofNullable(entityList).orElse(Collections.emptyList()).stream().filter(Objects::nonNull)
+                .map(this::toDto).collect(Collectors.toList());    }
 
-    /**
-     * Converts a {@link Page} of Entity to a {@link Page} of DTO.
-     *
-     * @param entityPage the {@link Page} to convert
-     * @return the {@link Page} of DTO generated
-     */
-    default Page<D> toDtoPage(Page<E> entityPage) {
-        return new PageImpl<>(toDtoList(entityPage.getContent()), entityPage.getPageable(),
-                entityPage.getTotalElements());
-    }
 }

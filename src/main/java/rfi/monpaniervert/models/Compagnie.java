@@ -64,7 +64,16 @@ public class Compagnie {
 	@LastModifiedDate
 	private Date modificationDate;
 	
-
+	public Compagnie() {}
+	
+	public Compagnie(Long id, String name, EStatusCompagnie status, Date creationDate, Date modificationDate) {
+		this.id = id;
+		this.status = status;
+		this.name = name;
+		this.creationDate = creationDate;
+		this.modificationDate = modificationDate;
+	}
+	
 	public Long getId() {
 		return id;
 	}

@@ -26,18 +26,19 @@ import rfi.monpaniervert.exceptions.NotFoundException;
 public class CompagnieServiceImpl implements CompagnieService {
 
 	@Autowired private CompagnieManager compagnieManager;
+	@Autowired private CompagnieMapper compagnieMapper;
 	@Autowired private S3Manager s3Manager;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CompagnieServiceImpl.class);
 
 	@Override
 	public CompagnieDTO getById(Long id) throws NotFoundException {
-		return CompagnieMapper.INSTANCE.toDto(this.compagnieManager.getById(id));
+		return this.compagnieMapper.toDto(this.compagnieManager.getById(id));
 	}
 
 	@Override
 	public CompagnieDTO put(Long id, Compagnie compagnie, MultipartFile files) {
-		return CompagnieMapper.INSTANCE.toDto(this.compagnieManager.put(id, compagnie));
+		return this.compagnieMapper.toDto(this.compagnieManager.put(id, compagnie));
 	}
 	
 	@Override
@@ -46,7 +47,7 @@ public class CompagnieServiceImpl implements CompagnieService {
 		if(files != null) {
 			compagnieBdd.setImg(saveMultipartFileOnS3(compagnie.getId(), files, FileType.IMG_COMPAGNIE));
 		}
-		return CompagnieMapper.INSTANCE.toDto(this.compagnieManager.create(compagnieBdd));
+		return this.compagnieMapper.toDto(this.compagnieManager.create(compagnieBdd));
 	}
 
 	@Override
@@ -55,7 +56,7 @@ public class CompagnieServiceImpl implements CompagnieService {
 	}
 
 	@Override
-	public Page<Compagnie> find(TdbCompagnieDTO tdbCompagnieDTO, Pageable pagination) {
+	public Page<CompagnieDTO> find(TdbCompagnieDTO tdbCompagnieDTO, Pageable pagination) {
 		return this.compagnieManager.find(tdbCompagnieDTO, pagination);
 	}
 

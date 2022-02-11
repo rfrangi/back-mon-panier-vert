@@ -6,26 +6,22 @@ import javax.validation.constraints.Size;
 public class AdresseDTO {
 	
 	private Long idAdresse;
-	
-	@NotNull 
-    @Size(min = 10, max = 100)
 	private String adresse;
-	
 	private String complement;
-	
-	@NotNull 
-    @Size(min = 3, max = 40)
 	private String ville;
-	
-	@NotNull
-    @Size(min = 5, max = 5)
 	private String codePostal;
-	
-	@NotNull 
-    @Size(max = 30)
 	private String pays;
-	
 	private String description;
+	
+	public AdresseDTO(Long idAdresse, String ville, String codePostal, String pays) {
+		this.idAdresse = idAdresse;
+		this.ville = ville;
+		this.codePostal = codePostal;
+		this.pays = pays;
+	}	
+	public AdresseDTO(Long idAdresse) {
+		this.idAdresse = idAdresse;
+	}
 	
 	public AdresseDTO() {}
 	/**

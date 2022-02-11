@@ -1,5 +1,6 @@
 package rfi.monpaniervert.models;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -20,6 +21,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import rfi.monpaniervert.enums.EStatusSite;
@@ -48,7 +51,23 @@ public class Site {
 				inverseJoinColumns = @JoinColumn(name = "compagnie_id"))
 	private Set<Compagnie> compagnies = new HashSet<>();
 
+	@CreatedDate
+	private Date creationDate;
 
+	@LastModifiedDate
+	private Date modificationDate;
+	
+	public Site() {}
+	
+	
+	public Site(Long id, String name, EStatusSite status, Date creationDate, Date modificationDate) {
+		this.id = id;
+		this.name = name;
+		this.status = status;
+		this.creationDate = creationDate;
+		this.modificationDate = modificationDate;
+	}
+	
 	/**
 	 * @return the id
 	 */
@@ -101,6 +120,9 @@ public class Site {
 	 * @return the compagnies
 	 */
 	public Set<Compagnie> getCompagnies() {
+		if(this.compagnies == null) {
+			this.compagnies = new HashSet<Compagnie>();
+		}
 		return compagnies;
 	}
 

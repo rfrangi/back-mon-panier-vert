@@ -8,6 +8,9 @@ import org.springframework.data.domain.Pageable;/*
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;*/
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 import rfi.monpaniervert.dto.TdbMailDTO;
@@ -19,12 +22,12 @@ import rfi.monpaniervert.repository.EmailRepository;
 @Component
 public class MailManagerImpl  implements MailManager {
 
-//	@Autowired private JavaMailSender emailSender;
+	@Autowired private JavaMailSender emailSender;
 	@Autowired private EmailRepository emailRepository;
 
     public void sendSimpleMessage(String to, String subject, String text) {
-      //  SimpleMailMessage message = new SimpleMailMessage(); 
-      /*  message.setTo(to); 
+        SimpleMailMessage message = new SimpleMailMessage(); 
+        message.setTo(to); 
         message.setSubject(subject); 
         message.setText(text);
         
@@ -33,7 +36,7 @@ public class MailManagerImpl  implements MailManager {
 		this.save(to, to, subject, text, EStatusEmail.ENVOYER, null);
         }catch(MailException e) {
         	this.save(to, to, subject, text, EStatusEmail.ERREUR, e.getMessage());
-        }*/
+        }
    }
 
 	@Override

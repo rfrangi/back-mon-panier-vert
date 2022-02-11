@@ -50,8 +50,8 @@ public class AdminUserController  {
 	
 	@RequestMapping(value = "/{id}/email/{email}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public UserDTO putEmail(@PathVariable(value = "id") Long id, @PathVariable(value = "email") String email, @Valid @RequestBody User user) throws NotFoundException {
-		return this.userService.putEmail(id, email, user);
+	public UserDTO putEmail(@PathVariable(value = "id") Long id, @PathVariable(value = "email") String email, @Valid @RequestBody UserDTO user) throws NotFoundException {
+		return this.userService.putEmail(id, email);
 	}
 	
 	@RequestMapping(value = "/{id}/password", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

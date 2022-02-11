@@ -52,10 +52,11 @@ public class User {
 	private ECivilite civilite;
 
 	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
 	private EStatusUser status = EStatusUser.ACTIF;
-
+ 
 	@Column(nullable = false)
-	private Boolean revecoirOffre;
+	private Boolean recevoirOffre;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -79,6 +80,7 @@ public class User {
 		this.password = password;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -135,12 +137,12 @@ public class User {
 		this.civilite = civilite;
 	}
 
-	public Boolean isRevecoirOffre() {
-		return revecoirOffre;
+	public Boolean getRecevoirOffre() {
+		return recevoirOffre;
 	}
 
-	public void setRevecoirOffre(Boolean revecoirOffre) {
-		this.revecoirOffre = revecoirOffre;
+	public void setRecevoirOffre(Boolean recevoirOffre) {
+		this.recevoirOffre = recevoirOffre;
 	}
 
 	public Date getCreationDate() {

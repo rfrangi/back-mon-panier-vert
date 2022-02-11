@@ -51,8 +51,7 @@ public class UserManagerImpl  implements UserManager {
 		userBDD.setLastname(user.getLastname());
 		userBDD.setCivilite(user.getCivilite());
 		userBDD.setEmail(user.getEmail());
-		userBDD.setRevecoirOffre(user.isRevecoirOffre());
-		userBDD.setStatus(user.getStatus());
+		userBDD.setRecevoirOffre(user.getRecevoirOffre());
 		return this.userRepository.save(userBDD);
 	}
 

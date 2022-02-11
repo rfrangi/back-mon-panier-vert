@@ -20,5 +20,5 @@ public interface CompagnieService {
 	
 	CompagnieDTO create(Compagnie compagnie, MultipartFile files);
 
-	Page<Compagnie> find(TdbCompagnieDTO tdbCompagnieDTO, Pageable pagination);
+	Page<CompagnieDTO> find(TdbCompagnieDTO tdbCompagnieDTO, Pageable pagination);
 }
