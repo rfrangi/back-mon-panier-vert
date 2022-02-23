@@ -15,12 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 import rfi.monpaniervert.dto.CompagnieDTO;
 import rfi.monpaniervert.dto.TdbCompagnieDTO;
 import rfi.monpaniervert.enums.FileType;
+import rfi.monpaniervert.exceptions.NotFoundException;
 import rfi.monpaniervert.managers.CompagnieManager;
 import rfi.monpaniervert.managers.S3Manager;
 import rfi.monpaniervert.mappers.CompagnieMapper;
 import rfi.monpaniervert.models.Compagnie;
 import rfi.monpaniervert.services.CompagnieService;
-import rfi.monpaniervert.exceptions.NotFoundException;
 
 @Service
 public class CompagnieServiceImpl implements CompagnieService {

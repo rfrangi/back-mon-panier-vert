@@ -18,50 +18,56 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import rfi.monpaniervert.dto.CompagnieDTO;
-import rfi.monpaniervert.dto.TdbCompagnieDTO;
+import rfi.monpaniervert.dto.ProduitDTO;
+import rfi.monpaniervert.dto.TdbProduitDTO;
 import rfi.monpaniervert.exceptions.NotFoundException;
-import rfi.monpaniervert.models.Compagnie;
-import rfi.monpaniervert.services.CompagnieService;
+import rfi.monpaniervert.services.ProduitService;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/admin/compagnies")
-public class AdminCompagnieController {
+@RequestMapping("/api/admin/produit")
+public class AdminProduitController {
 
-	@Autowired private CompagnieService compagnieService;
+	@Autowired private ProduitService produitService;
+	
 	private final ObjectMapper mapper = new ObjectMapper();
-
+	
 	@RequestMapping(value = "/paginated", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Page<CompagnieDTO> find(@RequestBody TdbCompagnieDTO tdbCompagnieDTO, Pageable pagination) {
-		return this.compagnieService.find(tdbCompagnieDTO, pagination);
+	public Page<ProduitDTO> find(@RequestBody TdbProduitDTO tdbProduitDTO, Pageable pagination) {
+		return this.produitService.find(tdbProduitDTO, pagination);
 	}
+	
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	CompagnieDTO create(@RequestParam("compagnie") String compagnie, @RequestParam(value = "files", required= false ) MultipartFile files) throws JsonProcessingException {
-    	final Compagnie compagnieObj = this.mapper.readValue(compagnie, Compagnie.class);
-    	return this.compagnieService.create(compagnieObj, files);
+	ProduitDTO add(
+			@RequestParam("produit") String produitDTO,  
+			@RequestParam(value = "files", required= false) MultipartFile files) throws JsonProcessingException {
+    	final ProduitDTO produitObj = this.mapper.readValue(produitDTO, ProduitDTO.class);
+    	return this.produitService.add(produitObj, files);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public CompagnieDTO put(@PathVariable(value = "id") Long id, @RequestParam("compagnie") String compagnie,  @RequestParam(value = "files", required= false) MultipartFile files) throws JsonProcessingException {
-    	final Compagnie compagnieObj = this.mapper.readValue(compagnie, Compagnie.class);
-    	return this.compagnieService.put(id, compagnieObj, files);
+	ProduitDTO put(
+			@PathVariable(value = "id") Long id,
+			@RequestParam("produit") String produitDTO,  
+			@RequestParam(value = "files", required= false) MultipartFile files) throws JsonProcessingException {
+    	final ProduitDTO produitObj = this.mapper.readValue(produitDTO, ProduitDTO.class);
+    	produitObj.setId(id);
+    	return this.produitService.put(produitObj, files);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable(value = "id") Long id) {
-		this.compagnieService.delete(id);
+		this.produitService.delete(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public CompagnieDTO getById(@PathVariable(value = "id") Long id) throws NotFoundException {
-		return this.compagnieService.getById(id);
+	public ProduitDTO getById(@PathVariable(value = "id") Long id) throws NotFoundException {
+		return this.produitService.getById(id);
 	}
-	
 }

@@ -6,8 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import rfi.monpaniervert.dto.CompagnieDTO;
 import rfi.monpaniervert.dto.TdbCompagnieDTO;
-import rfi.monpaniervert.models.Compagnie;
 import rfi.monpaniervert.exceptions.NotFoundException;
+import rfi.monpaniervert.models.Compagnie;
 
 public interface CompagnieService {
 

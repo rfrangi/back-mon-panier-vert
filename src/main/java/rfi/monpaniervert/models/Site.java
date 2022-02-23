@@ -25,6 +25,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import rfi.monpaniervert.enums.EStatusSite;
 @Entity
 @Table(name = "site")
@@ -40,6 +42,7 @@ public class Site {
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idAdresse")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Adresse adresse;
 	
     @Enumerated(EnumType.STRING)
@@ -147,6 +150,26 @@ public class Site {
 	 */
 	public void setStatus(EStatusSite status) {
 		this.status = status;
+	}
+
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+
+	public Date getModificationDate() {
+		return modificationDate;
+	}
+
+
+	public void setModificationDate(Date modificationDate) {
+		this.modificationDate = modificationDate;
 	}
 
 

@@ -1,63 +1,58 @@
-package rfi.monpaniervert.models;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+package rfi.monpaniervert.dto;
 
 import rfi.monpaniervert.enums.ECategorie;
 import rfi.monpaniervert.enums.ETypeTarif;
 
-@Entity
-@Table(	name = "produit")
-@EntityListeners(AuditingEntityListener.class)
-public class Produit {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProduitDTO {
+	
 	private Long id;
-	
-	@Column(nullable = false)
 	private String name;
-	
-    @Enumerated(EnumType.STRING)
 	private ECategorie categorie;
-    
-	@Column(nullable = false)
     private Double tarif;
-    
-    @Enumerated(EnumType.STRING)
     private ETypeTarif typeTarif;
-    
-	@Column(nullable = false)
     private Long quantite;
+    private String img;
+    private Long idCompagnie;
+    private String compagnieName;
+    private String description;
+    
+	public ProduitDTO() {}
 
 	
-    private String img;
-    
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="compagnie_id", nullable = false)
-    private Compagnie compagnie;
-
-   
-	public Compagnie getCompagnie() {
-		return compagnie;
+    public ProduitDTO(Long id, String name, ECategorie categorie, Double tarif, Long quantite) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.categorie = categorie;
+		this.tarif = tarif;
+		this.quantite = quantite;
 	}
 
-	public void setCompagnie(Compagnie compagnie) {
-		this.compagnie = compagnie;
+	public String getDescription() {
+		return description;
 	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getCompagnieName() {
+		return compagnieName;
+	}
+
+	public void setCompagnieName(String compagnieName) {
+		this.compagnieName = compagnieName;
+	}
+
+	public Long getIdCompagnie() {
+		return idCompagnie;
+	}
+
+	public void setIdCompagnie(Long idCompagnie) {
+		this.idCompagnie = idCompagnie;
+	}
+
 
 	public String getImg() {
 		return img;

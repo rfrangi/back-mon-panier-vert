@@ -25,10 +25,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import rfi.monpaniervert.dto.CompagnieDTO;
 import rfi.monpaniervert.dto.SiteDTO;
 import rfi.monpaniervert.dto.TdbSiteDTO;
-import rfi.monpaniervert.models.Compagnie;
+import rfi.monpaniervert.exceptions.NotFoundException;
 import rfi.monpaniervert.models.Site;
 import rfi.monpaniervert.services.SiteService;
-import rfi.monpaniervert.exceptions.NotFoundException;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -61,7 +60,7 @@ public class AdminSiteController {
 			@RequestParam("site") String site,  
 			@RequestParam(value = "files", required= false ) MultipartFile files) throws JsonProcessingException {
     	final Site siteObj = this.mapper.readValue(site, Site.class);
-		return this.siteService.create(siteObj);
+		return this.siteService.put(siteObj.getId(), siteObj);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -7,6 +7,7 @@ package rfi.monpaniervert.enums;
 public enum FileType {
     IMG_COMPAGNIE("IMG_COMPAGNIE"),
     IMG_SITE("IMG_SITE"),
+    IMG_PRODUIT("IMG_PRODUIT"),
     IMG_USER("IMG_USER");
 	
     private final String name;

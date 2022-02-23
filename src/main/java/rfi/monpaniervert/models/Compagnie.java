@@ -1,6 +1,8 @@
 package rfi.monpaniervert.models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +15,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -64,6 +69,9 @@ public class Compagnie {
 	@LastModifiedDate
 	private Date modificationDate;
 	
+	@OneToMany(mappedBy="compagnie")
+	private Set<Produit> produits = new HashSet<>();
+	
 	public Compagnie() {}
 	
 	public Compagnie(Long id, String name, EStatusCompagnie status, Date creationDate, Date modificationDate) {
@@ -74,6 +82,14 @@ public class Compagnie {
 		this.modificationDate = modificationDate;
 	}
 	
+	public Set<Produit> getProduits() {
+		return produits;
+	}
+
+	public void setProduits(Set<Produit> produits) {
+		this.produits = produits;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -1,6 +1,7 @@
 package rfi.monpaniervert.managers.impl;
 
 import java.text.MessageFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -43,7 +44,11 @@ public class SiteManagerImpl  implements SiteManager {
 	@Override
 	public Site put(Long id, Site site) {
 		site.setId(id);
-		return this.siteRepository.save(site);
+		final Site siteBdd = this.siteRepository.findById(id).get();
+		siteBdd.setName(site.getName());
+		siteBdd.setStatus(site.getStatus());
+		siteBdd.setModificationDate(new Date());
+		return this.siteRepository.save(siteBdd);
 	}
 
 	@Override
