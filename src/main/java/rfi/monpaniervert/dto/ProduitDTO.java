@@ -1,12 +1,14 @@
 package rfi.monpaniervert.dto;
 
 import rfi.monpaniervert.enums.ECategorie;
+import rfi.monpaniervert.enums.ESSCategorie;
 import rfi.monpaniervert.enums.ETypeTarif;
 
 public class ProduitDTO {
 	
 	private Long id;
 	private String name;
+	private String reference;
 	private ECategorie categorie;
     private Double tarif;
     private ETypeTarif typeTarif;
@@ -15,7 +17,11 @@ public class ProduitDTO {
     private Long idCompagnie;
     private String compagnieName;
     private String description;
-    
+    private Double poidsMin;
+    private Double poidsMax;
+    private int nbPieceLot;
+	private ESSCategorie ssCategorie;
+	
 	public ProduitDTO() {}
 
 	
@@ -27,6 +33,56 @@ public class ProduitDTO {
 		this.tarif = tarif;
 		this.quantite = quantite;
 	}
+
+	public String getReference() {
+		return reference;
+	}
+
+
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
+
+
+	public Double getPoidsMin() {
+		return poidsMin;
+	}
+
+
+	public void setPoidsMin(Double poidsMin) {
+		this.poidsMin = poidsMin;
+	}
+
+
+	public Double getPoidsMax() {
+		return poidsMax;
+	}
+
+
+	public void setPoidsMax(Double poidsMax) {
+		this.poidsMax = poidsMax;
+	}
+
+
+	public int getNbPieceLot() {
+		return nbPieceLot;
+	}
+
+
+	public void setNbPieceLot(int nbPieceLot) {
+		this.nbPieceLot = nbPieceLot;
+	}
+
+
+	public ESSCategorie getSsCategorie() {
+		return ssCategorie;
+	}
+
+
+	public void setSsCategorie(ESSCategorie ssCategorie) {
+		this.ssCategorie = ssCategorie;
+	}
+
 
 	public String getDescription() {
 		return description;

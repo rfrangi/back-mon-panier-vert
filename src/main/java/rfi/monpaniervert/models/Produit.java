@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import rfi.monpaniervert.enums.ECategorie;
+import rfi.monpaniervert.enums.ESSCategorie;
 import rfi.monpaniervert.enums.ETypeTarif;
 
 @Entity
@@ -49,8 +50,62 @@ public class Produit {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="compagnie_id", nullable = false)
     private Compagnie compagnie;
+    
+	@Column(nullable = true)
+    private Double poidsMin;
+	
+	@Column(nullable = true)
+    private Double poidsMax;
+	
+	@Column(nullable = true)
+    private int nbPieceLot;
+    
+    @Enumerated(EnumType.STRING)
+	private ESSCategorie ssCategorie;
 
+	@Column(nullable = true)
+    private String reference;
    
+	public String getReference() {
+		return reference;
+	}
+
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
+
+	public Double getPoidsMin() {
+		return poidsMin;
+	}
+
+	public void setPoidsMin(Double poidsMin) {
+		this.poidsMin = poidsMin;
+	}
+
+	public Double getPoidsMax() {
+		return poidsMax;
+	}
+
+	public void setPoidsMax(Double poidsMax) {
+		this.poidsMax = poidsMax;
+	}
+
+	public int getNbPieceLot() {
+		return nbPieceLot;
+	}
+
+	public void setNbPieceLot(int nbPieceLot) {
+		this.nbPieceLot = nbPieceLot;
+	}
+
+	public ESSCategorie getSsCategorie() {
+		return ssCategorie;
+	}
+
+	public void setSsCategorie(ESSCategorie ssCategorie) {
+		this.ssCategorie = ssCategorie;
+	}
+
 	public Compagnie getCompagnie() {
 		return compagnie;
 	}

@@ -3,6 +3,7 @@ package rfi.monpaniervert.dto;
 import java.util.List;
 
 import rfi.monpaniervert.enums.ECategorie;
+import rfi.monpaniervert.enums.ESSCategorie;
 
 public class TdbProduitDTO {
 
@@ -10,6 +11,7 @@ public class TdbProduitDTO {
 	private String searchTerm;
 	private Long idCompagnie;
 	private List<ECategorie> categories;
+	private List<ESSCategorie> ssCategories;
 	private long minTarif;
 	private long maxTarif;
 	
@@ -61,5 +63,15 @@ public class TdbProduitDTO {
 
 	public void setMaxTarif(long maxTarif) {
 		this.maxTarif = maxTarif;
+	}
+
+	public List<ESSCategorie> getSsCategories() {
+		return ssCategories;
+	}
+
+	public void setSsCategories(List<ESSCategorie> ssCategories) {
+		this.ssCategories = ssCategories;
 	}	
+	
+	
 }
