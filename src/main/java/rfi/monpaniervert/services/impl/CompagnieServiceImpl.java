@@ -43,11 +43,10 @@ public class CompagnieServiceImpl implements CompagnieService {
 	
 	@Override
 	public CompagnieDTO create(Compagnie compagnie, MultipartFile files) {
-		Compagnie compagnieBdd = this.compagnieManager.create(compagnie);
 		if(files != null) {
-			compagnieBdd.setImg(saveMultipartFileOnS3(compagnie.getId(), files, FileType.IMG_COMPAGNIE));
+			compagnie.setImg(saveMultipartFileOnS3(compagnie.getId(), files, FileType.IMG_COMPAGNIE));
 		}
-		return this.compagnieMapper.toDto(this.compagnieManager.create(compagnieBdd));
+		return this.compagnieMapper.toDto(this.compagnieManager.create(compagnie));
 	}
 
 	@Override

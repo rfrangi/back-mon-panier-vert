@@ -47,7 +47,7 @@ public class Produit {
 	
     private String img;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name="compagnie_id", nullable = false)
     private Compagnie compagnie;
     
@@ -66,6 +66,31 @@ public class Produit {
 	@Column(nullable = true)
     private String reference;
    
+	@Column(nullable = true)
+    private Boolean promo;
+	
+	@Column(nullable = true)
+	private Boolean bio;
+	
+	public Boolean getPromo() {
+		return promo;
+	}
+
+
+	public void setPromo(Boolean promo) {
+		this.promo = promo;
+	}
+
+
+	public Boolean getBio() {
+		return bio;
+	}
+
+
+	public void setBio(Boolean bio) {
+		this.bio = bio;
+	}
+
 	public String getReference() {
 		return reference;
 	}

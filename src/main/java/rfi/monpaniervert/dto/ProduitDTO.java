@@ -1,5 +1,7 @@
 package rfi.monpaniervert.dto;
 
+import javax.persistence.Column;
+
 import rfi.monpaniervert.enums.ECategorie;
 import rfi.monpaniervert.enums.ESSCategorie;
 import rfi.monpaniervert.enums.ETypeTarif;
@@ -21,23 +23,47 @@ public class ProduitDTO {
     private Double poidsMax;
     private int nbPieceLot;
 	private ESSCategorie ssCategorie;
+    private Boolean promo;
+	private Boolean bio;
 	
+    
 	public ProduitDTO() {}
 
 	
-    public ProduitDTO(Long id, String name, ECategorie categorie, Double tarif, Long quantite) {
+    public ProduitDTO(Long id, String name, ECategorie categorie, Double tarif, Long quantite, String img) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.categorie = categorie;
 		this.tarif = tarif;
 		this.quantite = quantite;
+		this.img = img;
 	}
+
+    
+	public Boolean getPromo() {
+		return promo;
+	}
+
+
+	public void setPromo(Boolean promo) {
+		this.promo = promo;
+	}
+
+
+	public Boolean getBio() {
+		return bio;
+	}
+
+
+	public void setBio(Boolean bio) {
+		this.bio = bio;
+	}
+
 
 	public String getReference() {
 		return reference;
 	}
-
 
 	public void setReference(String reference) {
 		this.reference = reference;

@@ -16,7 +16,7 @@ import rfi.monpaniervert.models.Produit;
 @Repository
 public interface ProduitRepository extends JpaRepository<Produit, Long> {
 	
-	@Query("SELECT DISTINCT new rfi.monpaniervert.dto.ProduitDTO(p.id, p.name, p.categorie, p.tarif, p.quantite) "
+	@Query("SELECT DISTINCT new rfi.monpaniervert.dto.ProduitDTO(p.id, p.name, p.categorie, p.tarif, p.quantite, p.img) "
 			+ "FROM Produit p LEFT JOIN p.compagnie c "
 			+ "WHERE (?1 is NULL OR (lower(p.name) LIKE lower(concat('%', ?1,'%')))) "
 			+ "AND (p.categorie in ?2) "
