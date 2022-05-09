@@ -1,5 +1,7 @@
 package rfi.monpaniervert.services;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -27,4 +29,6 @@ public interface UserService {
 	User getByEmail(String email);
 
 	Page<UserDTO> find(TdbUserDTO tdbUserDTO, Pageable pagination);
+
+	void updateStatus(Long id, @Valid String status);
 }

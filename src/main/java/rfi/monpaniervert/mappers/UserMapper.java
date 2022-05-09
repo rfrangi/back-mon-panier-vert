@@ -25,6 +25,7 @@ public interface UserMapper extends EntityDtoMapper<User, UserDTO> {
  
     @Override
     @Mapping(target = "roles", ignore = true)
+    @Mapping(target = "tokenResetPassword", ignore = true)
     User toEntity(UserDTO dto);  
     
     @AfterMapping

@@ -1,11 +1,15 @@
 package rfi.monpaniervert.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
@@ -24,6 +28,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import rfi.monpaniervert.enums.ECategorie;
 import rfi.monpaniervert.enums.EStatusCompagnie;
 import rfi.monpaniervert.enums.ETypeCompagnie;
 
@@ -68,7 +75,14 @@ public class Compagnie {
 	private Date modificationDate;
 	
 	@OneToMany(mappedBy="compagnie")
+	@JsonManagedReference
 	private Set<Produit> produits = new HashSet<>();
+	
+	
+    @ElementCollection(targetClass=ECategorie.class)
+    @CollectionTable(name="compagnie_categorie")
+	@Column(name = "categorie", nullable = false)
+	private List<ECategorie> categories = new ArrayList<ECategorie>();
 	
 	public Compagnie() {}
 	
@@ -80,6 +94,14 @@ public class Compagnie {
 		this.modificationDate = modificationDate;
 	}
 	
+	public List<ECategorie> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<ECategorie> categories) {
+		this.categories = categories;
+	}
+
 	public Set<Produit> getProduits() {
 		return produits;
 	}

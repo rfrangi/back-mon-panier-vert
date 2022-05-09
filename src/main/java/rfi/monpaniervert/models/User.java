@@ -57,6 +57,9 @@ public class User {
  
 	@Column(nullable = false)
 	private Boolean recevoirOffre;
+	
+	@Column(nullable = false)
+	private Integer nbTentative;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -71,16 +74,58 @@ public class User {
 
 	@LastModifiedDate
 	private Date modificationDate;
+	
+	private Date changeStatusDate;
+	
+	private Date lastConnexionDate;
 
-	public User() {
-	}
+	private String tokenResetPassword;
 
+	public User() {}
+	
 	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
 	}
-
 	
+	public String getTokenResetPassword() {
+		return tokenResetPassword;
+	}
+
+	public void setTokenResetPassword(String tokenResetPassword) {
+		this.tokenResetPassword = tokenResetPassword;
+	}
+
+	public Date getChangeStatusDate() {
+		return changeStatusDate;
+	}
+
+
+	public void setChangeStatusDate(Date changeStatusDate) {
+		this.changeStatusDate = changeStatusDate;
+	}
+
+
+	public Integer getNbTentative() {
+		return nbTentative;
+	}
+
+
+	public void setNbTentative(Integer nbTentative) {
+		this.nbTentative = nbTentative;
+	}
+	
+
+	public Date getLastConnexionDate() {
+		return lastConnexionDate;
+	}
+
+
+	public void setLastConnexionDate(Date lastConnexionDate) {
+		this.lastConnexionDate = lastConnexionDate;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

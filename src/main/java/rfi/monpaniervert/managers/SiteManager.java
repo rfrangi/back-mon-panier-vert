@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import rfi.monpaniervert.dto.SiteDTO;
 import rfi.monpaniervert.dto.TdbSiteDTO;
 import rfi.monpaniervert.exceptions.NotFoundException;
 import rfi.monpaniervert.models.Compagnie;
@@ -22,7 +23,7 @@ public interface SiteManager {
 	
 	Site getById(Long id) throws NotFoundException;
 
-	Page<Site> find(TdbSiteDTO tdbSiteDTO, Pageable pagination);
+	Page<SiteDTO> find(TdbSiteDTO tdbSiteDTO, Pageable pagination);
 
 	List<Compagnie> findCompagnies(Long id);
 

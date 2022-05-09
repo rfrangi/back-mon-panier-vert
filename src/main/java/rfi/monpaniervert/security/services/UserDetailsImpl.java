@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import rfi.monpaniervert.enums.EStatusUser;
 import rfi.monpaniervert.models.User;
 
 public class UserDetailsImpl implements UserDetails {
@@ -22,14 +23,17 @@ public class UserDetailsImpl implements UserDetails {
 
 	@JsonIgnore
 	private String password;
+	
+	private EStatusUser status;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserDetailsImpl(Long id, String email, String password,
+	public UserDetailsImpl(Long id, String email, String password, EStatusUser status, 
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
+		this.status = status;
 		this.authorities = authorities;
 	}
 
@@ -42,6 +46,7 @@ public class UserDetailsImpl implements UserDetails {
 				user.getId(), 
 				user.getEmail(),
 				user.getPassword(), 
+				user.getStatus(),
 				authorities);
 	}
 
@@ -57,6 +62,13 @@ public class UserDetailsImpl implements UserDetails {
 	public String getEmail() {
 		return email;
 	}
+	
+	
+
+	public EStatusUser getStatus() {
+		return status;
+	}
+
 
 	@Override
 	public String getPassword() {

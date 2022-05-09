@@ -1,5 +1,7 @@
 package rfi.monpaniervert.services.impl;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import rfi.monpaniervert.dto.PasswordDTO;
 import rfi.monpaniervert.dto.TdbUserDTO;
 import rfi.monpaniervert.dto.UserDTO;
+import rfi.monpaniervert.enums.EStatusUser;
 import rfi.monpaniervert.exceptions.LoginExistingException;
 import rfi.monpaniervert.managers.UserManager;
 import rfi.monpaniervert.mappers.UserMapper;
@@ -65,5 +68,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDTO updatePassword(Long id, PasswordDTO passwordDTO) throws NotFoundException {
 		return UserMapper.INSTANCE.toDto(this.userManager.updatePassword(id, passwordDTO));
+	}
+
+	@Override
+	public void updateStatus(Long id, @Valid String status) {
+		this.userManager.putStatus(id, EStatusUser.valueOf(status));
 	}
 }

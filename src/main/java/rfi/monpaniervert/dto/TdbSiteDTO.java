@@ -1,9 +1,30 @@
 package rfi.monpaniervert.dto;
 
+import java.util.List;
+
+import rfi.monpaniervert.enums.EStatusSite;
+
 public class TdbSiteDTO {
 
 	private String id;
 	private String searchTerm;
+	private String searchByAdresse;
+	private List<EStatusSite> status;
+	
+	public String getSearchByAdresse() {
+		return searchByAdresse;
+	}
+	
+	public void setSearchByAdresse(String searchByAdresse) {
+		this.searchByAdresse = searchByAdresse;
+	}
+	
+	public List<EStatusSite> getStatus() {
+		return status;
+	}
+	public void setStatus(List<EStatusSite> status) {
+		this.status = status;
+	}
 	/**
 	 * @return the id
 	 */

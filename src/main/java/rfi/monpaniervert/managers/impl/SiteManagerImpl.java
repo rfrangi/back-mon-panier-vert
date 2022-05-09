@@ -13,7 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import rfi.monpaniervert.dto.SiteDTO;
 import rfi.monpaniervert.dto.TdbSiteDTO;
+import rfi.monpaniervert.enums.EStatusSite;
 import rfi.monpaniervert.exceptions.NotFoundException;
 import rfi.monpaniervert.managers.SiteManager;
 import rfi.monpaniervert.models.Compagnie;
@@ -29,6 +31,7 @@ public class SiteManagerImpl  implements SiteManager {
 	
 	@Override
 	public Site create(Site site) {
+		site.setCreationDate(new Date());
 		return this.siteRepository.save(site);
 	}
 
@@ -44,11 +47,8 @@ public class SiteManagerImpl  implements SiteManager {
 	@Override
 	public Site put(Long id, Site site) {
 		site.setId(id);
-		final Site siteBdd = this.siteRepository.findById(id).get();
-		siteBdd.setName(site.getName());
-		siteBdd.setStatus(site.getStatus());
-		siteBdd.setModificationDate(new Date());
-		return this.siteRepository.save(siteBdd);
+		site.setModificationDate(new Date());
+		return this.siteRepository.save(site);
 	}
 
 	@Override
@@ -57,9 +57,19 @@ public class SiteManagerImpl  implements SiteManager {
 	}
 
 	@Override
-	public Page<Site> find(TdbSiteDTO tdbSiteDTO, Pageable pagination) {
-		final String searchTerm = tdbSiteDTO.getSearchTerm() == "" ? null : tdbSiteDTO.getSearchTerm().equals(null) ? null : tdbSiteDTO.getSearchTerm().trim();
-		return this.siteRepository.find(searchTerm, pagination);
+	public Page<SiteDTO> find(TdbSiteDTO tdbSiteDTO, Pageable pagination) {
+		String searchTerm = null;
+		if(tdbSiteDTO.getSearchTerm()  != null) {
+			searchTerm = tdbSiteDTO.getSearchTerm() == "" ? null : tdbSiteDTO.getSearchTerm().equals(null) ? null : tdbSiteDTO.getSearchTerm().trim();
+		}
+		
+		String searchByAdresse = null;
+		if(tdbSiteDTO.getSearchByAdresse()  != null) {
+			searchByAdresse = tdbSiteDTO.getSearchByAdresse() == "" ? null : tdbSiteDTO.getSearchByAdresse().equals(null) ? null : tdbSiteDTO.getSearchByAdresse().trim();
+		}
+		final List<EStatusSite> status = tdbSiteDTO.getStatus() != null ? tdbSiteDTO.getStatus() : null;
+
+		return this.siteRepository.find(searchTerm, searchByAdresse, status, pagination);
 	}
 
 	@Override

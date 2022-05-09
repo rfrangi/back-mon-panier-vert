@@ -15,9 +15,63 @@ public class SiteDTO {
 	private Set<CompagnieDTO> compagnies = new HashSet<>();
 	private Date creationDate;
 	private Date modificationDate;
+	private Long telephone;
+	private String email;
+	private String img;
+	
+	public SiteDTO(Long id, String name, EStatusSite status, Date creationDate, Date modificationDate) {
+		this.id = id;
+		this.status = status;
+		this.name = name;
+		this.creationDate = creationDate;
+		this.modificationDate = modificationDate;
+	}
+	
+	public SiteDTO(Long id, String name, EStatusSite status, Date creationDate, Date modificationDate, Long idAdresse, String adresse, String ville, String codePostal, String pays, String email, Long telephone) {
+		this.id = id;
+		this.status = status;
+		this.name = name;
+		this.creationDate = creationDate;
+		this.modificationDate = modificationDate;
+		this.email = email;
+		this.telephone = telephone;
+		this.adresse = new AdresseDTO();
+		this.adresse.setVille(ville);		
+		this.adresse.setAdresse(adresse);
+		this.adresse.setIdAdresse(idAdresse);
+		this.adresse.setPays(pays);
+		this.adresse.setCodePostal(codePostal);
+
+	}
 	
 	public SiteDTO() {}
 	
+	
+	
+	public Long getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(Long telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	public Long getId() {
 		return id;
 	}

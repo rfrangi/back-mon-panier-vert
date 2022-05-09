@@ -22,7 +22,7 @@ public interface SiteService {
 	
 	Site create(Site site);
 
-	Page<Site> find(TdbSiteDTO tdbSiteDTO, Pageable pagination);
+	Page<SiteDTO> find(TdbSiteDTO tdbSiteDTO, Pageable pagination);
 
 	List<CompagnieDTO> findCompagnies(Long id);
 

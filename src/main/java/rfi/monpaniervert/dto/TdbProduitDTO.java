@@ -10,12 +10,23 @@ public class TdbProduitDTO {
 	private Long id;
 	private String searchTerm;
 	private Long idCompagnie;
+	private Long idSite;
 	private List<ECategorie> categories;
 	private List<ESSCategorie> ssCategories;
 	private long minTarif;
 	private long maxTarif;
 	
 	public TdbProduitDTO() {}
+
+	
+	public Long getIdSite() {
+		return idSite;
+	}
+
+
+	public void setIdSite(Long idSite) {
+		this.idSite = idSite;
+	}
 
 	public Long getId() {
 		return id;

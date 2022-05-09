@@ -1,7 +1,5 @@
 package rfi.monpaniervert.dto;
 
-import javax.persistence.Column;
-
 import rfi.monpaniervert.enums.ECategorie;
 import rfi.monpaniervert.enums.ESSCategorie;
 import rfi.monpaniervert.enums.ETypeTarif;
@@ -30,7 +28,21 @@ public class ProduitDTO {
 	public ProduitDTO() {}
 
 	
-    public ProduitDTO(Long id, String name, ECategorie categorie, Double tarif, Long quantite, String img) {
+    public ProduitDTO(
+    		Long id, 
+    		String name, 
+    		ECategorie categorie, 
+    		Double tarif, 
+    		Long quantite, 
+    		String img, 
+    		String compagnieName, 
+    		Long idCompagnie, 
+    		Boolean promo, 
+    		Boolean bio,
+    		Double poidsMin,
+    		Double poidsMax,
+    		int nbPieceLot,
+    		ESSCategorie ssCategorie) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -38,6 +50,14 @@ public class ProduitDTO {
 		this.tarif = tarif;
 		this.quantite = quantite;
 		this.img = img;
+		this.compagnieName = compagnieName;
+		this.idCompagnie = idCompagnie;
+		this.bio = bio;
+		this.promo = promo;
+		this.poidsMax = poidsMax;
+		this.poidsMin = poidsMin;
+		this.nbPieceLot = nbPieceLot;
+		this.ssCategorie = ssCategorie;
 	}
 
     

@@ -8,8 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import rfi.monpaniervert.dto.ProduitDTO;
-import rfi.monpaniervert.dto.TdbProduitDTO;
 import rfi.monpaniervert.enums.ECategorie;
+import rfi.monpaniervert.enums.ESSCategorie;
 import rfi.monpaniervert.managers.ProduitManager;
 import rfi.monpaniervert.models.Produit;
 import rfi.monpaniervert.repository.ProduitRepository;
@@ -25,11 +25,8 @@ public class ProduitManagerImpl  implements ProduitManager {
 	}
 
 	@Override
-	public Page<ProduitDTO> find(TdbProduitDTO tdbProduitDTO, Pageable pagination) {
-		final String searchTerm = tdbProduitDTO.getSearchTerm() == "" ? null : tdbProduitDTO.getSearchTerm().equals(null) ? null : tdbProduitDTO.getSearchTerm().trim();
-		final List<ECategorie> categories = tdbProduitDTO.getCategories()!= null ? tdbProduitDTO.getCategories() : null;
-		final Long idCompagnie = tdbProduitDTO.getIdCompagnie();
-		return this.produitRepository.findDTO(searchTerm, categories, idCompagnie, pagination);
+	public Page<ProduitDTO> find(String searchTerm, List<ECategorie> categories, List<Long> idsCompagnie, List<ESSCategorie> ssCategories, Pageable pagination) {
+		return this.produitRepository.findDTO( idsCompagnie, categories, ssCategories, searchTerm, pagination);
 	}
 
 	@Override
@@ -46,5 +43,16 @@ public class ProduitManagerImpl  implements ProduitManager {
 	@Override
 	public Produit getById(Long id) {
 		return this.produitRepository.getById(id);
+	}
+
+	@Override
+	public long  countByCategorie(ECategorie categorie, List<Long> idsCompagnie) {
+		return this.produitRepository.countByCategorie(idsCompagnie, categorie);
+	}
+
+	@Override
+	public long countBySSCategorie(ESSCategorie ssCategorie, List<Long> idsCompagnie) {
+		return this.produitRepository.countBySSCategorie(idsCompagnie, ssCategorie);
+
 	}
 }

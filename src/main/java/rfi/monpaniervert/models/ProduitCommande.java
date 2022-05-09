@@ -1,5 +1,7 @@
 package rfi.monpaniervert.models;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,18 +16,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import rfi.monpaniervert.enums.ECategorie;
 import rfi.monpaniervert.enums.ESSCategorie;
-import rfi.monpaniervert.enums.ETypeTarif;
 
 @Entity
-@Table(	name = "produit")
+@Table(	name = "produitCommande")
 @EntityListeners(AuditingEntityListener.class)
-public class Produit {
+public class ProduitCommande {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,14 +43,8 @@ public class Produit {
 	@Column(nullable = false)
     private Double tarif;
     
-    @Enumerated(EnumType.STRING)
-    private ETypeTarif typeTarif;
-    
 	@Column(nullable = true)
-    private Long quantite;
-
-	
-    private String img;
+    private Long quantiteCommande;
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name="compagnie_id", nullable = false)
@@ -75,6 +72,33 @@ public class Produit {
 	@Column(nullable = true)
 	private Boolean bio;
 	
+	@CreatedDate
+	private Date creationDate;
+
+	@LastModifiedDate
+	private Date modificationDate;
+	
+	
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+
+	public Date getModificationDate() {
+		return modificationDate;
+	}
+
+
+	public void setModificationDate(Date modificationDate) {
+		this.modificationDate = modificationDate;
+	}
+
+
 	public Boolean getPromo() {
 		return promo;
 	}
@@ -142,13 +166,6 @@ public class Produit {
 		this.compagnie = compagnie;
 	}
 
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
-	}
 
 	/**
 	 * @return the id
@@ -206,31 +223,13 @@ public class Produit {
 		this.tarif = tarif;
 	}
 
-	/**
-	 * @return the typeTarif
-	 */
-	public ETypeTarif getTypeTarif() {
-		return typeTarif;
+
+	public Long getQuantiteCommande() {
+		return quantiteCommande;
 	}
 
-	/**
-	 * @param typeTarif the typeTarif to set
-	 */
-	public void setTypeTarif(ETypeTarif typeTarif) {
-		this.typeTarif = typeTarif;
-	}
 
-	/**
-	 * @return the quantite
-	 */
-	public Long getQuantite() {
-		return quantite;
-	}
-
-	/**
-	 * @param quantite the quantite to set
-	 */
-	public void setQuantite(Long quantite) {
-		this.quantite = quantite;
+	public void setQuantiteCommande(Long quantiteCommande) {
+		this.quantiteCommande = quantiteCommande;
 	}
 }

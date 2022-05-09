@@ -53,7 +53,7 @@ public class SiteServiceImpl implements SiteService {
 	}
 
 	@Override
-	public Page<Site> find(TdbSiteDTO tdbSiteDTO, Pageable pagination) {
+	public Page<SiteDTO> find(TdbSiteDTO tdbSiteDTO, Pageable pagination) {
 		return this.siteManager.find(tdbSiteDTO, pagination);
 	}
 

@@ -18,11 +18,13 @@ public class UserDTO {
 	private EStatusUser status;
 	private Date creationDate;
 	private Date modificationDate;
+	private Date changeStatusDate;
 	private Boolean recevoirOffre;
 	private Set<String> roles;
 	private AdresseDTO Adresse;
-	
-	
+	private Integer nbTentative;
+	private Date lastConnexionDate;
+
 	public UserDTO(Long id, String email,
 			 String lastname, String firstname,
 			 ECivilite civilite, Date creationDate, EStatusUser status) {
@@ -35,10 +37,32 @@ public class UserDTO {
 		this.status = status;
 	}
 	
-	public UserDTO() {
-		// TODO Auto-generated constructor stub
-	}
+	public UserDTO() {}
 	
+	public Integer getNbTentative() {
+		return nbTentative;
+	}
+
+	public void setNbTentative(Integer nbTentative) {
+		this.nbTentative = nbTentative;
+	}
+
+	public Date getLastConnexionDate() {
+		return lastConnexionDate;
+	}
+
+	public void setLastConnexionDate(Date lastConnexionDate) {
+		this.lastConnexionDate = lastConnexionDate;
+	}
+
+	public Date getChangeStatusDate() {
+		return changeStatusDate;
+	}
+
+	public void setChangeStatusDate(Date changeStatusDate) {
+		this.changeStatusDate = changeStatusDate;
+	}
+
 	/**
 	 * @return the status
 	 */

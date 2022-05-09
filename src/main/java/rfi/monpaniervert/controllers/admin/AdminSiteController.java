@@ -39,7 +39,7 @@ public class AdminSiteController {
 
 	@RequestMapping(value = "/paginated", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Page<Site> find(@RequestBody TdbSiteDTO tdbSiteDTO, Pageable pagination) {
+	public Page<SiteDTO> find(@RequestBody TdbSiteDTO tdbSiteDTO, Pageable pagination) {
 		return this.siteService.find(tdbSiteDTO, pagination);
 	}
 	

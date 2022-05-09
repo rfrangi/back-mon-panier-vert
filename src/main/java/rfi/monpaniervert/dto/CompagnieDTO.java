@@ -1,7 +1,10 @@
 package rfi.monpaniervert.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import rfi.monpaniervert.enums.ECategorie;
 import rfi.monpaniervert.enums.EStatusCompagnie;
 import rfi.monpaniervert.enums.ETypeCompagnie;
 
@@ -18,6 +21,8 @@ public class CompagnieDTO {
 	private Date creationDate;
 	private Date modificationDate;
 	private String img;
+	private List<ECategorie> categories = new ArrayList<ECategorie>();
+
 	
 	public CompagnieDTO() {
 		// TODO Auto-generated constructor stub
@@ -63,6 +68,15 @@ public class CompagnieDTO {
 		this.creationDate = creationDate;
 		this.img = img;
 	}
+	
+	public List<ECategorie> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<ECategorie> categories) {
+		this.categories = categories;
+	}
+
 	/**
 	 * @return the img
 	 */

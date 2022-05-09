@@ -32,6 +32,12 @@ public class AdminMailController  {
 		this.mailService.sendSimpleMessage("romain.frangi@cleverconnect.com", "Test simple Message", "Hello, test simple message");
 	}
 	
+	@RequestMapping(value="resetMDP", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public void testResetMDP() throws NotFoundException {
+		this.mailService.resetPassword("frangi.romain@gmail.com");
+	}
+	
 	@RequestMapping(value = "/paginated", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public Page<Email> find(@RequestBody TdbMailDTO tdbMailDTO, Pageable pagination) {

@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import rfi.monpaniervert.dto.PasswordDTO;
 import rfi.monpaniervert.dto.TdbUserDTO;
 import rfi.monpaniervert.dto.UserDTO;
+import rfi.monpaniervert.exceptions.NotFoundException;
 import rfi.monpaniervert.models.User;
 import rfi.monpaniervert.services.UserService;
-import rfi.monpaniervert.exceptions.NotFoundException;
 
 
 @RestController
@@ -46,6 +46,12 @@ public class AdminUserController  {
 	@ResponseStatus(HttpStatus.OK)
 	public UserDTO put(@PathVariable(value = "id") Long id, @Valid @RequestBody UserDTO UserDTO) throws NotFoundException {
 		return this.userService.put(id, UserDTO);
+	}
+	
+	@RequestMapping(value = "/{id}/status", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public void putStatus(@PathVariable(value = "id") Long id, @Valid @RequestBody String status) {
+		this.userService.updateStatus(id, status);
 	}
 	
 	@RequestMapping(value = "/{id}/email/{email}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
