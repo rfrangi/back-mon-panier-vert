@@ -43,12 +43,12 @@ public class CommandeCompagnie {
 	@Column(nullable = false)
 	private Long compagnieId; 
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name="cmd_client_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="cmd_client_id", nullable = true)
     @JsonBackReference
     private CommandeClient commandeClient;
     
-	@OneToMany(mappedBy="compagnie")
+	@OneToMany(mappedBy="commandeCompagnie")
 	@JsonManagedReference
 	private Set<ProduitCommande> produitsCommande = new HashSet<>();
 	

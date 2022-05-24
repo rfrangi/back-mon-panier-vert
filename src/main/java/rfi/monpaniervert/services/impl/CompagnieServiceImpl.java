@@ -38,6 +38,9 @@ public class CompagnieServiceImpl implements CompagnieService {
 
 	@Override
 	public CompagnieDTO put(Long id, Compagnie compagnie, MultipartFile files) {
+		if(files != null) {
+			compagnie.setImg(saveMultipartFileOnS3(compagnie.getId(), files, FileType.IMG_COMPAGNIE));
+		}
 		return this.compagnieMapper.toDto(this.compagnieManager.put(id, compagnie));
 	}
 	

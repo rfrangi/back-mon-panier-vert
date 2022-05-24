@@ -35,6 +35,9 @@ public class ProduitCommande {
 	private Long id;
 	
 	@Column(nullable = false)
+	private Long idProduit;
+	
+	@Column(nullable = false)
 	private String name;
 	
     @Enumerated(EnumType.STRING)
@@ -47,9 +50,9 @@ public class ProduitCommande {
     private Long quantiteCommande;
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name="compagnie_id", nullable = false)
+    @JoinColumn(name="commande_compagnie_id", nullable = false)
     @JsonBackReference
-    private Compagnie compagnie;
+    private CommandeCompagnie commandeCompagnie;
     
 	@Column(nullable = true)
     private Double poidsMin;
@@ -78,7 +81,19 @@ public class ProduitCommande {
 	@LastModifiedDate
 	private Date modificationDate;
 	
+	private String img;
+	private String compagnieName;
 	
+	public String getCompagnieName() {
+		return compagnieName;
+	}
+
+
+	public void setCompagnieName(String compagnieName) {
+		this.compagnieName = compagnieName;
+	}
+
+
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -158,15 +173,6 @@ public class ProduitCommande {
 		this.ssCategorie = ssCategorie;
 	}
 
-	public Compagnie getCompagnie() {
-		return compagnie;
-	}
-
-	public void setCompagnie(Compagnie compagnie) {
-		this.compagnie = compagnie;
-	}
-
-
 	/**
 	 * @return the id
 	 */
@@ -231,5 +237,35 @@ public class ProduitCommande {
 
 	public void setQuantiteCommande(Long quantiteCommande) {
 		this.quantiteCommande = quantiteCommande;
+	}
+
+
+	public Long getIdProduit() {
+		return idProduit;
+	}
+
+
+	public void setIdProduit(Long idProduit) {
+		this.idProduit = idProduit;
+	}
+
+
+	public CommandeCompagnie getCommandeCompagnie() {
+		return commandeCompagnie;
+	}
+
+
+	public void setCommandeCompagnie(CommandeCompagnie commandeCompagnie) {
+		this.commandeCompagnie = commandeCompagnie;
+	}
+
+
+	public String getImg() {
+		return img;
+	}
+
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 }

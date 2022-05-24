@@ -26,7 +26,7 @@ public interface ProduitMapper extends EntityDtoMapper<Produit, ProduitDTO> {
     Produit toEntity(ProduitDTO dto);  
   
     @AfterMapping
-    default void changeRole(@MappingTarget ProduitDTO dto, Produit entity) {
+    default void changeCompagnie(@MappingTarget ProduitDTO dto, Produit entity) {
     	dto.setIdCompagnie(entity.getCompagnie().getId());
     	dto.setCompagnieName(entity.getCompagnie().getName());
     }	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import rfi.monpaniervert.dto.ProduitCommandeDTO;
 import rfi.monpaniervert.dto.ProduitDTO;
 import rfi.monpaniervert.enums.ECategorie;
 import rfi.monpaniervert.enums.ESSCategorie;
@@ -25,5 +26,9 @@ public interface ProduitManager {
 	long countByCategorie(ECategorie categorie, List<Long> idsCompagnie);
 	
 	long countBySSCategorie(ESSCategorie ssCategorie, List<Long> idsCompagnie);
+	
+	Long getQuantiteById(Long id);
+
+	void updateQuantiteProduit(List<ProduitCommandeDTO> produitsCommande);
 
 }

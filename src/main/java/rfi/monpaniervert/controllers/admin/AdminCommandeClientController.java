@@ -1,4 +1,4 @@
-package rfi.monpaniervert.controllers;
+package rfi.monpaniervert.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,21 +22,21 @@ import rfi.monpaniervert.services.CommandeClientService;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/commandesClient")
-public class CommandeClientController  {
+@RequestMapping("/api/admin/commandes")
+public class AdminCommandeClientController  {
 
 	@Autowired private CommandeClientService commandeClientService;
 
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/compagnie/paginated", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public CommandeClient create(@RequestBody CommandeClientDTO commandeClient) {
-		return this.commandeClientService.post(commandeClient);
+	public Page<CommandeClientDTO> findByCompagnie(@RequestBody TdbCommandeDTO tdbCommandeDTO, Pageable pagination) {
+		return this.commandeClientService.findByCompagnie(tdbCommandeDTO, pagination);
 	}
 	
-	@RequestMapping(value = "/paginated", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/site/paginated", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public Page<CommandeClientDTO> find(@RequestBody TdbCommandeDTO tdbCommandeDTO, Pageable pagination) {
-		return this.commandeClientService.findByUser(tdbCommandeDTO, pagination);
+	public Page<CommandeClientDTO> findBySite(@RequestBody TdbCommandeDTO tdbCommandeDTO, Pageable pagination) {
+		return this.commandeClientService.findBySite(tdbCommandeDTO, pagination);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)

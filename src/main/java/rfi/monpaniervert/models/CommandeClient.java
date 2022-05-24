@@ -48,11 +48,11 @@ public class CommandeClient {
 	@Column(nullable = false)
 	private Long siteId; 
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idAdresseLivraison")
 	private Adresse adresseLivraison;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idAdresseFacturation")
 	private Adresse adresseFacturation;
 	
@@ -63,6 +63,7 @@ public class CommandeClient {
 	private Date modificationDate;
 	
 	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
 	private EModeRetrait modeRetrait;
 	
 	@Column(nullable = false)

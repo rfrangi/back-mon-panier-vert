@@ -8,5 +8,7 @@ public interface AdresseManager {
 	Adresse put(Long id, Adresse adresse);
 	
 	Adresse getById(Long id) throws NotFoundException;
+
+	Adresse save(Adresse adresse);
 	
 }

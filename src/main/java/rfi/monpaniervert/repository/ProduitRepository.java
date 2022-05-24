@@ -29,5 +29,8 @@ public interface ProduitRepository extends JpaRepository<Produit, Long> {
 
 	@Query("SELECT count(p) FROM Produit p LEFT JOIN p.compagnie c WHERE c.id in ?1 AND ?2 = p.ssCategorie AND (p.quantite is NULL OR p.quantite > 0) AND c.status = 'VALIDE'") 
 	Long countBySSCategorie( List<Long> idCompagnie, ESSCategorie categorie);
+	
+	@Query("SELECT p.quantite FROM Produit p WHERE p.id = ?1") 
+	Long getQuantiteById(Long id);
 }
 			

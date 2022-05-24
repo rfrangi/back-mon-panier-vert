@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import rfi.monpaniervert.dto.ProduitCommandeDTO;
 import rfi.monpaniervert.dto.ProduitDTO;
 import rfi.monpaniervert.enums.ECategorie;
 import rfi.monpaniervert.enums.ESSCategorie;
@@ -54,5 +55,22 @@ public class ProduitManagerImpl  implements ProduitManager {
 	public long countBySSCategorie(ESSCategorie ssCategorie, List<Long> idsCompagnie) {
 		return this.produitRepository.countBySSCategorie(idsCompagnie, ssCategorie);
 
+	}
+
+	@Override
+	public Long getQuantiteById(Long id) {
+		return this.produitRepository.getQuantiteById(id);
+	}
+
+	@Override
+	public void updateQuantiteProduit(List<ProduitCommandeDTO> produitsCommande) {
+		produitsCommande.stream().forEach(val -> {
+			final Produit produit = this.produitRepository.getById(val.getIdProduit());
+			if (produit.getQuantite() != null) {
+				final long newQuantite = produit.getQuantite() - val.getQuantiteCommande();		
+				produit.setQuantite(newQuantite);
+				this.produitRepository.save(produit);
+			}
+		});
 	}
 }

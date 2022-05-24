@@ -46,7 +46,6 @@ public class Produit {
 	@Column(nullable = true)
     private Long quantite;
 
-	
     private String img;
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

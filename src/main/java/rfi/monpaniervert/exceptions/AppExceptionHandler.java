@@ -38,12 +38,17 @@ public class AppExceptionHandler {
 		return new ResponseEntity<>(err, new HttpHeaders(), HttpStatus.BAD_REQUEST); 
 	}
 	
+	@ExceptionHandler(value = { QuantiteNonDispoException.class })
+	public ResponseEntity<Object> QuantiteException(QuantiteNonDispoException ex, WebRequest request){
+		ErrorMessage err = new ErrorMessage(new Date(), ex.getMessage(), ex.getError());
+		return new ResponseEntity<>(err, new HttpHeaders(), HttpStatus.CONFLICT); 
+	}
+	
 	@ExceptionHandler(value = { SigninException.class })
 	public ResponseEntity<Object> signinException(SigninException ex, WebRequest request){
 		ErrorMessage err = new ErrorMessage(new Date(), ex.getMessage(), ex.getError());
 		return new ResponseEntity<>(err, new HttpHeaders(), HttpStatus.LOCKED); 
 	}
-	
 	
 	@ExceptionHandler(value = {ExistingException.class})
 	public ResponseEntity<Object> existingException(ExistingException ex, WebRequest request){

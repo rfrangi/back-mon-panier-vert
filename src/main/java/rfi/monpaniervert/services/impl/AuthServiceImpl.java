@@ -52,6 +52,7 @@ public class AuthServiceImpl implements AuthService {
 		}
 	
 		final User user = UserMapper.INSTANCE.toEntity(userDto);
+		user.setStatus(EStatusUser.ACTIF);
 		user.setNbTentative(3);
 		final Role role = this.roleManager.getByName(ERole.CLIENT);
 		user.setRoles(new HashSet<>());

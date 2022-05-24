@@ -12,7 +12,7 @@ public class ProduitCommandeDTO {
 	private ECategorie categorie;
     private Double tarif;
     private Long quantiteCommande;
-    private Long idCompagnie;
+    private Long commandeCompagnie;
     private Double poidsMin;
     private Double poidsMax;
     private int nbPieceLot;
@@ -22,7 +22,16 @@ public class ProduitCommandeDTO {
 	private Boolean bio;
 	private Date creationDate;
 	private Date modificationDate;
+	private Long idProduit;
+	private String img;
+    private String compagnieName;
 	
+	public String getCompagnieName() {
+		return compagnieName;
+	}
+	public void setCompagnieName(String compagnieName) {
+		this.compagnieName = compagnieName;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -53,12 +62,7 @@ public class ProduitCommandeDTO {
 	public void setQuantiteCommande(Long quantiteCommande) {
 		this.quantiteCommande = quantiteCommande;
 	}
-	public Long getIdCompagnie() {
-		return idCompagnie;
-	}
-	public void setIdCompagnie(Long idCompagnie) {
-		this.idCompagnie = idCompagnie;
-	}
+	
 	public Double getPoidsMin() {
 		return poidsMin;
 	}
@@ -112,5 +116,23 @@ public class ProduitCommandeDTO {
 	}
 	public void setModificationDate(Date modificationDate) {
 		this.modificationDate = modificationDate;
+	}
+	public Long getIdProduit() {
+		return idProduit;
+	}
+	public void setIdProduit(Long idProduit) {
+		this.idProduit = idProduit;
+	}
+	public Long getCommandeCompagnie() {
+		return commandeCompagnie;
+	}
+	public void setCommandeCompagnie(Long commandeCompagnie) {
+		this.commandeCompagnie = commandeCompagnie;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 }

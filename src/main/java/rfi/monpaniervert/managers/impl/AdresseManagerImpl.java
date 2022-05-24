@@ -26,4 +26,9 @@ public class AdresseManagerImpl  implements AdresseManager {
 	public Adresse put(Long id, Adresse adresse) {
 		return this.adresseRepository.save(adresse);
 	}
+
+	@Override
+	public Adresse save(Adresse adresse) {
+		return this.save(adresse);
+	}
 }
